@@ -23,7 +23,7 @@ Install R, Rstudio, and Bookdown.
 
 or
 
-Try it out using Binder [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/caltechlibrary/book-template/master?urlpath=rstudio))
+Try it out using Binder [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/caltechlibrary/book-template/main?urlpath=rstudio))
 
 
 Usage
