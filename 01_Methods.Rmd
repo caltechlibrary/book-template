@@ -1,0 +1,53 @@
+# Methods
+ 
+## Citations and Citation Styles
+
+## Bookdown Specific Features
+
+You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(introduction). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+
+## Including Code and Images
+
+
+### Schematic: Bactofilin {-#Bactofilin}
+```{R}
+knitr::include_graphics('img/3_6_1.gif')
+```
+
+[*PDB: 6RIB*](http://rcsb.org/structure/6RIB)
+Bactofilins are found in many species of bacteria and archaea, suggesting that they perform diverse (and currently unknown) functions. They polymerize into very stable filaments with a triangular beta-helical structure, like this one from *Thermus thermophilus* [@deng2019]. Bactofilin filaments lack two hallmarks of actin- and tubulin-based cytoskeletal elements: polarity and dynamic assembly/disassembly. In this way, they are similar to intermediate filaments in eukaryotic cytoskeletons.
+
+## LaTeX
+
+## Caltech Custom Features
+
+If you have a video on CaltechDATA, we can add embed it using just the DOI. This example also shows how you can define a caption using a \(\) label outside of am element, let Bookdown format it, and them embed it
+
+(ref:1-1) [Staphylococcus aureus](#methods) Collected by: David Rogers Movie DOI: [10.22002/D1.1463](https://doi.org/10.22002/D1.1463)
+
+```{R 1-1, echo=FALSE, screenshot.alt='movie_stills/1_1.png' , fig.cap= '(ref:1-1)'}
+library(doivideo)
+doivideo('10.22002/D1.1463',0,'movie_stills/1_1.png')
+```
+
+We also provide a method for embeddig video files locally, if you want the book to work offline.
+
+```{R 1-1-embed, echo=FALSE, screenshot.alt='movie_stills/1_1.png' , fig.cap= '(ref:1-1)'}
+library(embedvideo)
+embedvideo('videos/1_1_Saureus_480p.mp4')
+ 
+
+```
+
+
+
+
+### Further Reading {-}
+
+Errington (2013). *L-form bacteria, cell walls and the origins of life* [@errington2013].
+
+Ptacin and Shapiro (2013). *Chromosome architecture is a key element of bacterial cellular organization* [@ptacin2013].
+
+Sleytr and Beveridge (1999). *Bacterial S-layers* [@sleytr1999].
+
+Strahl and Errington (2017). *Bacterial membranes: Structure, domains, and function* [@strahl2017].
