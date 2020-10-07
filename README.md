@@ -29,15 +29,15 @@ Try it out using Binder [![Binder](https://mybinder.org/badge_logo.svg)](https:/
 Usage
 -----
 
-Use the "Use this template" option in GitHub to make a copy of this template repository for yourself.
+- Use the "Use this template" option in GitHub to make a copy of this template repository for yourself.
 
-Clone your repository to your local computer, and double click on the "book-template.Rproj" file.
+- Clone your repository to your local computer, and double click on the "book-template.Rproj" file.
 
-Open the install.R file, Highlight everything, and click 'Run' to install the dependencies.
+- Open the install.R file, Highlight everything, and click 'Run' to install the dependencies.
 
-Use the Build menu in Rstudio to render the book.
+- Use the Build menu in Rstudio to render the book.
 
-Now you can edit index.Rmd and the 01_*.Rmd files to add content to the book.
+- Now you can edit index.Rmd and the 01_*.Rmd files to add content to the book.
 
 Getting help
 ------------
