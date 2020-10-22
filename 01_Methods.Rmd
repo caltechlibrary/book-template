@@ -1,13 +1,47 @@
-# Methods
- 
+# Customization
+
+A lot of customization is conducted in the header of each .Rmd document. The
+base file, index.rmd, includes configuration that applies to the entire book.
+
 ## Citations and Citation Styles
+
+Bookdown has great support for citations, which are handled with BibTeX files (.bib). 
+BibTeX is a reasonably standard reference citation format that can be produced by most reference managers and online services. 
+This template includes a bibliography file AtlasBibTeX.bib as an example.
+
+References are handled in the bibliography section of the YAML header. You'll
+see the following in he header of index.rmd:
+
+'''bibliography: AtlasBibTeX.bib'''
+
+Let's open the `AtlasBibTeX.bib` file and see what it looks like.  You'll see
+citation information about each article in groups indicated by a document type
+tag, e.g., `@article`, followed by a unique citation key (typically the last
+name of an author and the year of publication, e.g. Young_2015), followed by
+citation information. We use the **@** symbol to indicate a reference, so
+references in test look like `@Castro_2017`.
+
+The citation style defaults to Chicago.  If you want a different citation
+style, you can download a csl style file from the
+[Zotero style registry](https://www.zotero.org/styles).  Download your favorite
+citation style and put it in your directory. You add the citation
+style file by using the csl section of the YAML (this is a new section, like
+bibliography):
+
+```
+csl: american-chemical-society.csl
+```
 
 ## Bookdown Specific Features
 
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(introduction). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(introduction). 
+If you do not manually label them, there will be automatic labels anyway, e.g.,
+Chapter \@ref(customization).
 
 ## Including Code and Images
 
+We include images in a directory in the project (say 'img'), and include them
+using the include_graphics function like so:
 
 ### Schematic: Bactofilin {-#Bactofilin}
 ```{R}
@@ -18,6 +52,12 @@ knitr::include_graphics('img/3_6_1.gif')
 Bactofilins are found in many species of bacteria and archaea, suggesting that they perform diverse (and currently unknown) functions. They polymerize into very stable filaments with a triangular beta-helical structure, like this one from *Thermus thermophilus* [@deng2019]. Bactofilin filaments lack two hallmarks of actin- and tubulin-based cytoskeletal elements: polarity and dynamic assembly/disassembly. In this way, they are similar to intermediate filaments in eukaryotic cytoskeletons.
 
 ## LaTeX
+
+You can embed any LaTeX directly in the document. 
+
+Inline LaTeX equations can be written in a pair of dollar signs using the LaTeX syntax, e.g., $f(k) = {n \choose k} p^{k} (1-p)^{n-k}$
+
+Math expressions of the display style can be written in a pair of double dollar signs, e.g., $$f(k) = {n \choose k} p^{k} (1-p)^{n-k}$$
 
 ## Caltech Custom Features
 

@@ -67,7 +67,7 @@
 % title / author / date
 \title{Book Template}
 \author{Caltech Library}
-\date{2020-10-07}
+\date{2020-10-22}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -150,19 +150,56 @@ Note that markdown comes in different dialects, referred to as
 to as \href{http://commonmark.org/}{Common Markdown}, though some of the
 more advanced options we'll discuss later are specific to Rmarkdown.
 
-\hypertarget{methods}{\chapter{Methods}\label{methods}}
+\chapter{Customization}\label{customization}
+
+A lot of customization is conducted in the header of each .Rmd document.
+The base file, index.rmd, includes configuration that applies to the
+entire book.
 
 \section{Citations and Citation
 Styles}\label{citations-and-citation-styles}
+
+Bookdown has great support for citations, which are handled with BibTeX
+files (.bib). BibTeX is a reasonably standard reference citation format
+that can be produced by most reference managers and online services.
+This template includes a bibliography file AtlasBibTeX.bib as an
+example.
+
+References are handled in the bibliography section of the YAML header.
+You'll see the following in he header of index.rmd:
+
+`''bibliography: AtlasBibTeX.bib'''
+
+Let's open the \texttt{AtlasBibTeX.bib} file and see what it looks like.
+You'll see citation information about each article in groups indicated
+by a document type tag, e.g., \texttt{@article}, followed by a unique
+citation key (typically the last name of an author and the year of
+publication, e.g.~Young\_2015), followed by citation information. We use
+the **\citet{*}* symbol to indicate a reference, so references in test
+look like \texttt{@Castro\_2017}.
+
+The citation style defaults to Chicago. If you want a different citation
+style, you can download a csl style file from the
+\href{https://www.zotero.org/styles}{Zotero style registry}. Download
+your favorite citation style and put it in your directory. You add the
+citation style file by using the csl section of the YAML (this is a new
+section, like bibliography):
+
+\begin{verbatim}
+csl: american-chemical-society.csl
+\end{verbatim}
 
 \section{Bookdown Specific Features}\label{bookdown-specific-features}
 
 You can label chapter and section titles using \texttt{\{\#label\}}
 after them, e.g., we can reference Chapter \ref{introduction}. If you do
 not manually label them, there will be automatic labels anyway, e.g.,
-Chapter \ref{methods}.
+Chapter \ref{customization}.
 
 \section{Including Code and Images}\label{including-code-and-images}
+
+We include images in a directory in the project (say `img'), and include
+them using the include\_graphics function like so:
 
 \subsection*{Schematic: Bactofilin}\label{Bactofilin}
 \addcontentsline{toc}{subsection}{Schematic: Bactofilin}
@@ -179,6 +216,14 @@ elements: polarity and dynamic assembly/disassembly. In this way, they
 are similar to intermediate filaments in eukaryotic cytoskeletons.
 
 \section{LaTeX}\label{latex}
+
+You can embed any LaTeX directly in the document.
+
+Inline LaTeX equations can be written in a pair of dollar signs using
+the LaTeX syntax, e.g., \(f(k) = {n \choose k} p^{k} (1-p)^{n-k}\)
+
+Math expressions of the display style can be written in a pair of double
+dollar signs, e.g., \[f(k) = {n \choose k} p^{k} (1-p)^{n-k}\]
 
 \section{Caltech Custom Features}\label{caltech-custom-features}
 

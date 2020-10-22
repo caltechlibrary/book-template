@@ -6,7 +6,7 @@ url: 'https\://library.caltech.edu/'
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-bibliography: [AtlasBibTeX.bib]
+bibliography: AtlasBibTeX.bib
 csl: springer-socpsych-brackets.csl
 link-citations: yes
 description: "A basic bookdown demo."
