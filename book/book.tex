@@ -46,6 +46,44 @@
 \bibliographystyle{plainnat}
 
 % pandoc syntax highlighting
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 
 % longtable
 \usepackage{longtable,booktabs}
@@ -153,8 +191,9 @@ more advanced options we'll discuss later are specific to Rmarkdown.
 \chapter{Customization}\label{customization}
 
 A lot of customization is conducted in the header of each .Rmd document.
-The base file, index.rmd, includes configuration that applies to the
-entire book.
+The base file, index.Rmd, includes configuration that applies to the
+entire book. There is also a \_output.yml file that has more
+customization and configuration options.
 
 \section{Citations and Citation
 Styles}\label{citations-and-citation-styles}
@@ -175,18 +214,18 @@ You'll see citation information about each article in groups indicated
 by a document type tag, e.g., \texttt{@article}, followed by a unique
 citation key (typically the last name of an author and the year of
 publication, e.g.~Young\_2015), followed by citation information. We use
-the **\citet{*}* symbol to indicate a reference, so references in test
-look like \texttt{@Castro\_2017}.
+the @ symbol to indicate a reference, so references in text look like
+\texttt{@Castro\_2017}.
 
 The citation style defaults to Chicago. If you want a different citation
 style, you can download a csl style file from the
-\href{https://www.zotero.org/styles}{Zotero style registry}. Download
-your favorite citation style and put it in your directory. You add the
-citation style file by using the csl section of the YAML (this is a new
-section, like bibliography):
+\href{https://www.zotero.org/styles}{Zotero style registry}. The
+template includes \texttt{springer-socpsych-brackets.csl} sas an
+example. You add the citation style file by using the csl section of the
+YAML like:
 
 \begin{verbatim}
-csl: american-chemical-society.csl
+csl: aspringer-socpsych-brackets.csl
 \end{verbatim}
 
 \section{Bookdown Specific Features}\label{bookdown-specific-features}
@@ -198,8 +237,65 @@ Chapter \ref{customization}.
 
 \section{Including Code and Images}\label{including-code-and-images}
 
-We include images in a directory in the project (say `img'), and include
-them using the include\_graphics function like so:
+You can include computer code directly in your document, and it will be
+executed before the document is generated. You indicate that you're
+including code by using three back ticks ```, and then brackets \{r
+chunk-label, echo = FALSE, fig.cap = `A figure caption.'\}\} with the
+programming language. Next comes a label for the code chunk, and
+specific options for how the code is displayed. For example, this code
+chunk with do some basic math and make a simple plot in R.
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{verbatim}
+##  [1] -0.4068352  0.8035393  0.8947617  1.0465170 -0.7621892 -0.9053776
+##  [7]  0.6397582 -0.2249841 -0.4036176  1.6680216
+\end{verbatim}
+
+\begin{figure}
+\includegraphics{book_files/figure-latex/chunk-label-1} \caption[A figure caption]{A figure caption.}\label{fig:chunk-label}
+\end{figure}
+
+The echo option defines whether both the input and output is shown. If
+we change echo to TRUE we can see all the source code
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \OperatorTok{+}\StringTok{ }\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)  }\CommentTok{# 10 random numbers}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1.5248046  0.4149213 -0.4818043  0.2320972  0.3520773  0.6223242
+##  [7]  1.9725390  0.2378793  0.2086457  0.5912043
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(dist }\OperatorTok{~}\StringTok{ }\NormalTok{speed, cars)  }\CommentTok{# a scatterplot}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics{book_files/figure-latex/chunk-label-true-1} \caption[A figure caption]{A figure caption.}\label{fig:chunk-label-true}
+\end{figure}
+
+We include images in a directory in the project (say `img'), and add
+them into the document using a code chunk and the include\_graphics
+function like
+\texttt{knitr::include\_graphics(\textquotesingle{}img/3\_6\_1.gif\textquotesingle{})}:
 
 \subsection*{Schematic: Bactofilin}\label{Bactofilin}
 \addcontentsline{toc}{subsection}{Schematic: Bactofilin}
@@ -228,8 +324,9 @@ dollar signs, e.g., \[f(k) = {n \choose k} p^{k} (1-p)^{n-k}\]
 \section{Caltech Custom Features}\label{caltech-custom-features}
 
 If you have a video on CaltechDATA, we can add embed it using just the
-DOI. This example also shows how you can define a caption using a ()
-label outside of am element, let Bookdown format it, and them embed it
+DOI. This example also shows how you can define a caption using a
+\(ref\) label outside of am element, let Bookdown format it, and them
+embed it.
 
 
 
@@ -243,7 +340,7 @@ by: David Rogers Movie DOI:
 \href{https://doi.org/10.22002/D1.1463}{10.22002/D1.1463}}\label{fig:1-1}
 \end{figure}
 
-We also provide a method for embeddig video files locally, if you want
+We also provide a method for embedding video files locally, if you want
 the book to work offline.
 
 \begin{figure}

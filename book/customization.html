@@ -58,6 +58,43 @@
 <script src="libs/embedvideo-binding-0.0.1/embedvideo.js"></script>
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -112,15 +149,15 @@
             <section class="normal" id="section-">
 <div id="customization" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Customization</h1>
-<p>A lot of customization is conducted in the header of each .Rmd document. The base file, index.rmd, includes configuration that applies to the entire book.</p>
+<p>A lot of customization is conducted in the header of each .Rmd document. The base file, index.Rmd, includes configuration that applies to the entire book. There is also a _output.yml file that has more customization and configuration options.</p>
 <div id="citations-and-citation-styles" class="section level2">
 <h2><span class="header-section-number">2.1</span> Citations and Citation Styles</h2>
 <p>Bookdown has great support for citations, which are handled with BibTeX files (.bib). BibTeX is a reasonably standard reference citation format that can be produced by most reference managers and online services. This template includes a bibliography file AtlasBibTeX.bib as an example.</p>
 <p>References are handled in the bibliography section of the YAML header. You'll see the following in he header of index.rmd:</p>
 <p>'''bibliography: AtlasBibTeX.bib'''</p>
-<p>Let's open the <code>AtlasBibTeX.bib</code> file and see what it looks like. You'll see citation information about each article in groups indicated by a document type tag, e.g., <code>@article</code>, followed by a unique citation key (typically the last name of an author and the year of publication, e.g. Young_2015), followed by citation information. We use the **<strong>???</strong>* symbol to indicate a reference, so references in test look like <code>@Castro_2017</code>.</p>
-<p>The citation style defaults to Chicago. If you want a different citation style, you can download a csl style file from the <a href="https://www.zotero.org/styles">Zotero style registry</a>. Download your favorite citation style and put it in your directory. You add the citation style file by using the csl section of the YAML (this is a new section, like bibliography):</p>
-<pre><code>csl: american-chemical-society.csl</code></pre>
+<p>Let's open the <code>AtlasBibTeX.bib</code> file and see what it looks like. You'll see citation information about each article in groups indicated by a document type tag, e.g., <code>@article</code>, followed by a unique citation key (typically the last name of an author and the year of publication, e.g. Young_2015), followed by citation information. We use the @ symbol to indicate a reference, so references in text look like <code>@Castro_2017</code>.</p>
+<p>The citation style defaults to Chicago. If you want a different citation style, you can download a csl style file from the <a href="https://www.zotero.org/styles">Zotero style registry</a>. The template includes <code>springer-socpsych-brackets.csl</code> sas an example. You add the citation style file by using the csl section of the YAML like:</p>
+<pre><code>csl: aspringer-socpsych-brackets.csl</code></pre>
 </div>
 <div id="bookdown-specific-features" class="section level2">
 <h2><span class="header-section-number">2.2</span> Bookdown Specific Features</h2>
@@ -128,7 +165,30 @@
 </div>
 <div id="including-code-and-images" class="section level2">
 <h2><span class="header-section-number">2.3</span> Including Code and Images</h2>
-<p>We include images in a directory in the project (say 'img'), and include them using the include_graphics function like so:</p>
+<p>You can include computer code directly in your document, and it will be executed before the document is generated. You indicate that you're including code by using three back ticks ```, and then brackets {r chunk-label, echo = FALSE, fig.cap = 'A figure caption.'}} with the programming language. Next comes a label for the code chunk, and specific options for how the code is displayed. For example, this code chunk with do some basic math and make a simple plot in R.</p>
+<pre><code>## [1] 2</code></pre>
+<pre><code>##  [1] -0.3816895  0.4893893 -0.1807800 -2.0899583 -0.9264573  0.1330336
+##  [7]  0.2731243  0.2526263  0.5601748  1.0933061</code></pre>
+<div class="figure"><span id="fig:chunk-label"></span>
+<img src="book_files/figure-html/chunk-label-1.png" alt="A figure caption." width="672" />
+<p class="caption">
+Figure 2.1: A figure caption.
+</p>
+</div>
+<p>The echo option defines whether both the input and output is shown. If we change echo to TRUE we can see all the source code</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>)  <span class="co"># 10 random numbers</span></code></pre></div>
+<pre><code>##  [1]  0.28452881  0.26496959  0.59132013  0.12790380  0.12058450 -0.62716004
+##  [7] -0.65900564  0.43810775  0.02651434 -0.31962793</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(dist <span class="op">~</span><span class="st"> </span>speed, cars)  <span class="co"># a scatterplot</span></code></pre></div>
+<div class="figure"><span id="fig:chunk-label-true"></span>
+<img src="book_files/figure-html/chunk-label-true-1.png" alt="A figure caption." width="672" />
+<p class="caption">
+Figure 2.2: A figure caption.
+</p>
+</div>
+<p>We include images in a directory in the project (say 'img'), and add them into the document using a code chunk and the include_graphics function like <code>knitr::include_graphics('img/3_6_1.gif')</code>:</p>
 <div id="Bactofilin" class="section level3 unnumbered">
 <h3>Schematic: Bactofilin</h3>
 <p><img src="img/3_6_1.gif" /><!-- --></p>
@@ -143,21 +203,21 @@
 </div>
 <div id="caltech-custom-features" class="section level2">
 <h2><span class="header-section-number">2.5</span> Caltech Custom Features</h2>
-<p>If you have a video on CaltechDATA, we can add embed it using just the DOI. This example also shows how you can define a caption using a () label outside of am element, let Bookdown format it, and them embed it</p>
+<p>If you have a video on CaltechDATA, we can add embed it using just the DOI. This example also shows how you can define a caption using a <span class="math inline">\(ref\)</span> label outside of am element, let Bookdown format it, and them embed it.</p>
 
 <div class="figure"><span id="fig:1-1"></span>
-<div id="htmlwidget-74e5603adfd806f2e2d4" style="width:100%;height:100%;" class="doivideo html-widget"></div>
-<script type="application/json" data-for="htmlwidget-74e5603adfd806f2e2d4">{"x":{"doi":"10.22002/D1.1463","index":0,"screenshot":"movie_stills/1_1.png"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ac14cd85752822222ae7" style="width:100%;height:100%;" class="doivideo html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ac14cd85752822222ae7">{"x":{"doi":"10.22002/D1.1463","index":0,"screenshot":"movie_stills/1_1.png"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-Figure 2.1: <a href="#methods">Staphylococcus aureus</a> Collected by: David Rogers Movie DOI: <a href="https://doi.org/10.22002/D1.1463">10.22002/D1.1463</a>
+Figure 2.3: <a href="#methods">Staphylococcus aureus</a> Collected by: David Rogers Movie DOI: <a href="https://doi.org/10.22002/D1.1463">10.22002/D1.1463</a>
 </p>
 </div>
-<p>We also provide a method for embeddig video files locally, if you want the book to work offline.</p>
+<p>We also provide a method for embedding video files locally, if you want the book to work offline.</p>
 <div class="figure"><span id="fig:1-1-embed"></span>
-<div id="htmlwidget-cd1a442e1b67a9681fc7" style="width:100%;height:100%;" class="embedvideo html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cd1a442e1b67a9681fc7">{"x":{"media_location":"videos/1_1_Saureus_480p.mp4"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f2b416c62f444045312f" style="width:100%;height:100%;" class="embedvideo html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f2b416c62f444045312f">{"x":{"media_location":"videos/1_1_Saureus_480p.mp4"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-Figure 2.2: <a href="#methods">Staphylococcus aureus</a> Collected by: David Rogers Movie DOI: <a href="https://doi.org/10.22002/D1.1463">10.22002/D1.1463</a>
+Figure 2.4: <a href="#methods">Staphylococcus aureus</a> Collected by: David Rogers Movie DOI: <a href="https://doi.org/10.22002/D1.1463">10.22002/D1.1463</a>
 </p>
 </div>
 <div id="further-reading" class="section level3 unnumbered">

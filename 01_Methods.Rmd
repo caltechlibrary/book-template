@@ -1,7 +1,7 @@
 # Customization
 
 A lot of customization is conducted in the header of each .Rmd document. The
-base file, index.rmd, includes configuration that applies to the entire book.
+base file, index.Rmd, includes configuration that applies to the entire book. There is also a _output.yml file that has more customization and configuration options.
 
 ## Citations and Citation Styles
 
@@ -18,18 +18,16 @@ Let's open the `AtlasBibTeX.bib` file and see what it looks like.  You'll see
 citation information about each article in groups indicated by a document type
 tag, e.g., `@article`, followed by a unique citation key (typically the last
 name of an author and the year of publication, e.g. Young_2015), followed by
-citation information. We use the **@** symbol to indicate a reference, so
-references in test look like `@Castro_2017`.
+citation information. We use the @ symbol to indicate a reference, so
+references in text look like `@Castro_2017`.
 
 The citation style defaults to Chicago.  If you want a different citation
 style, you can download a csl style file from the
-[Zotero style registry](https://www.zotero.org/styles).  Download your favorite
-citation style and put it in your directory. You add the citation
-style file by using the csl section of the YAML (this is a new section, like
-bibliography):
+[Zotero style registry](https://www.zotero.org/styles).  The template includes `springer-socpsych-brackets.csl` sas an example. You add the citation
+style file by using the csl section of the YAML like:
 
 ```
-csl: american-chemical-society.csl
+csl: aspringer-socpsych-brackets.csl
 ```
 
 ## Bookdown Specific Features
@@ -40,8 +38,23 @@ Chapter \@ref(customization).
 
 ## Including Code and Images
 
-We include images in a directory in the project (say 'img'), and include them
-using the include_graphics function like so:
+You can include computer code directly in your document, and it will be executed before the document is generated. You indicate that you're including code by using three back ticks ```, and then brackets \{r chunk-label, echo = FALSE, fig.cap = 'A figure caption.'}\} with the programming language. Next comes a label for the code chunk, and specific options for how the code is displayed. For example, this code chunk with do some basic math and make a simple plot in R.
+
+```{r chunk-label, echo = FALSE, fig.cap = 'A figure caption.'}
+1 + 1
+rnorm(10)  # 10 random numbers
+plot(dist ~ speed, cars)  # a scatterplot
+```
+
+The echo option defines whether both the input and output is shown. If we change echo to TRUE we can see all the source code
+
+```{r chunk-label-true, echo = TRUE, fig.cap = 'A figure caption.'}
+1 + 1
+rnorm(10)  # 10 random numbers
+plot(dist ~ speed, cars)  # a scatterplot
+```
+
+We include images in a directory in the project (say 'img'), and add them into the document using a code chunk and the include_graphics function like `knitr::include_graphics('img/3_6_1.gif')`:
 
 ### Schematic: Bactofilin {-#Bactofilin}
 ```{R}
@@ -61,7 +74,7 @@ Math expressions of the display style can be written in a pair of double dollar 
 
 ## Caltech Custom Features
 
-If you have a video on CaltechDATA, we can add embed it using just the DOI. This example also shows how you can define a caption using a \(\) label outside of am element, let Bookdown format it, and them embed it
+If you have a video on CaltechDATA, we can add embed it using just the DOI. This example also shows how you can define a caption using a \(ref\) label outside of am element, let Bookdown format it, and them embed it.
 
 (ref:1-1) [Staphylococcus aureus](#methods) Collected by: David Rogers Movie DOI: [10.22002/D1.1463](https://doi.org/10.22002/D1.1463)
 
@@ -70,7 +83,7 @@ library(doivideo)
 doivideo('10.22002/D1.1463',0,'movie_stills/1_1.png')
 ```
 
-We also provide a method for embeddig video files locally, if you want the book to work offline.
+We also provide a method for embedding video files locally, if you want the book to work offline.
 
 ```{R 1-1-embed, echo=FALSE, screenshot.alt='movie_stills/1_1.png' , fig.cap= '(ref:1-1)'}
 library(embedvideo)
